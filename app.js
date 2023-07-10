@@ -6,7 +6,17 @@ var logger = require('morgan');
 const methodOverride = require('method-override');
 // import mongose
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/wisataBlitar');
+// mongoose.connect('mongodb://127.0.0.1:27017/wisataBlitar');
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect("mongodb+srv://hafidnurfirmansyah10:f7Z9CpyrxNsXUXUZ@cluster0.punhd9c.mongodb.net/pariwisata");
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
+connectDB()
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
